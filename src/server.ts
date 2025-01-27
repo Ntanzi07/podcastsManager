@@ -1,9 +1,17 @@
 import * as http from "http";
+import { getListEpisodes } from "./controllers/podscasts_controller"; 
+
+
+const port = process.env.PORT;
 
 const server = http.createServer(
-    (request: http.IncomingMessage, response: http.ServerResponse) => {}
+    async (req: http.IncomingMessage, res: http.ServerResponse) => {
+        if(req.method === "GET"){
+           await getListEpisodes(req, res);
+        }
+    }
 );
 
-server.listen(process.env.PORT, () => {
-    console.log("Servidor iniciado na porta" + process.env.PORT);
+server.listen(port, () => {
+    console.log(`Servidor iniciado na porta ${port}`);
 });
