@@ -8,11 +8,9 @@ export const serviceFilterEpisodes = async (
 
     const queryString = podcastName?.split("?p=")[1] || "";
     const data = await repoPodcast(queryString);
-    
-    const status = data.length !== 0 ? statusCode.OK : statusCode.NOT_FOUND;
 
     const resposeFormat: FilterPodcastModel = {
-        statusCode: status,
+        statusCode: data.length !== 0 ? statusCode.OK : statusCode.NOT_FOUND,
         body: data
     };
 
