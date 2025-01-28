@@ -1,6 +1,5 @@
 import fs from "fs"
 import path from "path"
-import { promises } from "dns";
 import { PodcastModel } from "../models/podcast-model"
 
 const pathData = path.join(__dirname, "../repositories/podcasts.json");
