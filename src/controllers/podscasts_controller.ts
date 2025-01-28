@@ -13,11 +13,12 @@ export const getListEpisodes = async(
     );
 };
 
-export const getFilterEpsodes = async(
+export const getFilterEpisodes = async(
     req: IncomingMessage,
     res: ServerResponse
 ) => {
-    const content = await serviceFilterEpisodes('flow');
+    const bqueryString = req.url?.split("?p=")[1] || "";
+    const content = await serviceFilterEpisodes(bqueryString);
     res.writeHead(200, {'content-type': "application/json"});
     res.end(
         JSON.stringify(content)

@@ -1,5 +1,5 @@
 import * as http from "http";
-import { getFilterEpsodes, getListEpisodes } from "./controllers/podscasts_controller"; 
+import { getFilterEpisodes, getListEpisodes } from "./controllers/podscasts_controller"; 
 
 
 const port = process.env.PORT;
@@ -7,11 +7,13 @@ const port = process.env.PORT;
 const server = http.createServer(
     async (req: http.IncomingMessage, res: http.ServerResponse) => {
         
-        if(req.method === "GET" && req.url === "/api/list"){
+        const baseUrl = req.url?.split("?")[0];
+
+        if(req.method === "GET" && baseUrl === "/api/list"){
            await getListEpisodes(req, res);
         }
-        if(req.method === "GET" && req.url === "/api/episode"){
-            await getFilterEpsodes(req, res);
+        if(req.method === "GET" && baseUrl === "/api/episode"){
+            await getFilterEpisodes(req, res);
         }
     }
 );
