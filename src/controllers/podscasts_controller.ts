@@ -13,7 +13,7 @@ export const getListEpisodes = async(
     );
 };
 
-export const getFilterEpsodes = (
+export const getFilterEpsodes = async(
     req: IncomingMessage,
     res: ServerResponse
 ) => {
@@ -22,4 +22,4 @@ export const getFilterEpsodes = (
     res.end(
         JSON.stringify(content)
     )
-}
+};
